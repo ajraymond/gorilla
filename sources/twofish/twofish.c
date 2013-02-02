@@ -156,10 +156,10 @@ f32c(unsigned int x, unsigned int * k32, int keyLen)
     unsigned char b3x = b3  ^ ((b3 >> 2) ^ ((b3 & 2) ? 180 : 0)) ^ ((b3 & 1) ? 90 : 0);
     unsigned char b3y = b3x ^ ((b3 >> 1) ^ ((b3 & 1) ? 180 : 0));
 
-    return (((b0  ^ b1y ^ b2x ^ b3x) |  \
+    return ((b0  ^ b1y ^ b2x ^ b3x) |  \
                 ((b0x ^ b1y ^ b2y ^ b3 )  << 8) |  \
                 ((b0y ^ b1x ^ b2  ^ b3y) << 16) |  \
-                ((b0y ^ b1  ^ b2y ^ b3x) << 24)) + 0x100000000) %  0x100000000; 
+                ((b0y ^ b1  ^ b2y ^ b3x) << 24)); 
 
 }
 
