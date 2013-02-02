@@ -125,15 +125,15 @@ itcl::class ::itwofish::itwofish {
 		# since Tcl 8.5.9.1: Darwin >= 10.5
 		
 # puts stderr "twofish: gorilla::Dir = $gorilla::Dir"
-    set lib [ file join $::gorilla::Dir twofish f32-$os-$machine[ info sharedlibextension ] ]
+    set lib [ file join $::gorilla::Dir twofish libtwofish-$os-$machine[ info sharedlibextension ] ]
 #    puts stderr "twofish: lib -> $lib"
 
-    if { [ catch { load $lib f32 } ] } {
-# 	puts stderr "twofish: Using Tcl only f32"
+    if { [ catch { load $lib f32c } oops ] } {
+	puts stderr "twofish: Using Tcl only f32: $oops"
       set callmap [ list -m:f32- f32 ]
     } else {
-# 	puts stderr "twofish: Using Critcl f32"
-      set callmap [ list -m:f32- f32_critcl ]
+  	#puts stderr "twofish: Using native-C f32"
+      set callmap [ list -m:f32- f32c ]
     }
 
 # ---------------------------------------------------
