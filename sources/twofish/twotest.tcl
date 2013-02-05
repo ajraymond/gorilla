@@ -1,6 +1,12 @@
-#! /bin/sh
-# the next line restarts using tclsh \
-exec tclsh84 "`cygpath --windows $0`" ${1+"$@"}
+#! /usr/bin/tclsh
+
+namespace eval ::gorilla {
+	if { [ file type [ info script ] ] eq "link" } {
+		variable Dir ..
+	} else {
+		variable Dir ..
+	}
+}
 
 if {[file exists twofish.tcl]} {
     source twofish.tcl
